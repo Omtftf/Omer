@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Email Template Generator</h1>
+        <label for="templateType">Select Template:</label>
+        <select id="templateType">
+            <option value="welcome">Welcome Email</option>
+            <option value="reminder">Appointment Reminder</option>
+            <option value="withdrawal">Withdrawal Request</option>
+            <option value="checkin">Check-in Email</option>
+        </select>
+
+        <label for="clientName">Client's Name:</label>
+        <input type="text" id="clientName">
+
+        <label for="date">Date:</label>
+        <input type="date" id="date">
+
+        <label for="time">Time:</label>
+        <input type="time" id="time">
+
+        <label for="output">Generated Email:</label>
+        <textarea id="output" readonly></textarea>
+
+        <button onclick="generateEmail()">Generate Email</button>
+    </div>
+
+    <script>
+        const templates = {
+            welcome: `Dear [Client's Name],
+
+I hope this email finds you well.
+
+I am pleased to welcome you to TRADEFOLDER. My name is Mark Berkowitz, and I have been assigned to manage your investment portfolio. It was a pleasure speaking with you during our initial call, and I am looking forward to working together to achieve your financial goals.
+
+If you have any questions or need any assistance, please do not hesitate to contact me. I am here to ensure that your experience with us is both rewarding and seamless.
+
+Welcome once again, and I look forward to our continued partnership.
+
+Best regards,
+
+Mark Berkowitz
+TRADEFOLDER
+[Your Email Address]
+[Your Contact Number]`,
+
+            reminder: `Dear [Client's Name],
+
+I hope you are doing well.
+
+This is a friendly reminder of our upcoming appointment on [Date] at [Time]. It was a pleasure speaking with you earlier, and I am looking forward to our meeting.
+
+Should you have any questions or require any further information before our appointment, please feel free to reach out to me. I am always here to assist you.
+
+Thank you, and I look forward to our conversation.
+
+Best regards,
+
+Mark Berkowitz
+TRADEFOLDER
+[Your Email Address]
+[Your Contact Number]`,
+
+            withdrawal: `Dear [Client's Name],
+
+I am very sorry to hear that you are considering withdrawing your funds from TRADEFOLDER. We highly value your relationship with us and are committed to providing you with the best possible service.
+
+I understand that you have concerns, and I am doing everything I can to expedite the process for you. However, I believe that now is an exciting time in the market with some amazing opportunities on the horizon. I would love the chance to discuss your decision further and explore how we might continue to work together to achieve your investment goals.
+
+Please let me know if there is anything I can do to address your concerns and retain your trust.
+
+Best regards,
+
+Mark Berkowitz
+TRADEFOLDER
+[Your Email Address]
+[Your Contact Number]`,
+
+            checkin: `Dear [Client's Name],
+
+I hope this message finds you well.
+
+I wanted to take a moment to check in and see how you are doing. I value our relationship and am here to ensure that everything is going smoothly with your investment portfolio.
+
+I will be calling you on [Date] to discuss any updates and address any questions you might have. In the meantime, if you need any assistance or have any concerns, please do not hesitate to reach out to me.
+
+Looking forward to our conversation.
+
+Best regards,
+
+Mark Berkowitz
+TRADEFOLDER
+[Your Email Address]
+[Your Contact Number]`
+        };
+
+        function generateEmail() {
+            const templateType = document.getElementById('templateType').value;
+            const clientName = document.getElementById('clientName').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            let email = templates[templateType];
+            email = email.replace('[Client\'s Name]', clientName);
+            email = email.replace('[Date]', date);
+            email = email.replace('[Time]', time);
+
+            document.getElementById('output').value = email;
+        }
+    </script>
+</body>
+</html>
